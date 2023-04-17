@@ -1,7 +1,8 @@
-import 'package:bikesterr/appbar.dart';
+import 'package:bikesterr/presentation/components/appbar.dart';
 import 'package:bikesterr/presentation/screens/login.dart';
 import 'package:bikesterr/presentation/screens/register.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -9,7 +10,9 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppbar(),
+      appBar: MyAppbar(
+        showMenuIcon: false,
+      ),
       body: Form(
         child: Stack(children: [
           Container(
@@ -28,10 +31,11 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Login()),
-                    );
+                    Get.to(() => Login());
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => const Login()),
+                    // );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
@@ -53,10 +57,11 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Register()),
-                    );
+                    Get.to(() => Register());
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => const Register()),
+                    // );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

@@ -1,9 +1,9 @@
-import 'package:bikesterr/appbar.dart';
+import 'package:bikesterr/presentation/components/appbar.dart';
+import 'package:bikesterr/presentation/components/drawer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-
-import '../../drawer.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
@@ -11,7 +11,7 @@ class Wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppbar(),
+      appBar: MyAppbar(),
       drawer: const MyDrawer(),
       body: Container(
         color: const Color.fromRGBO(233, 233, 235, 1),

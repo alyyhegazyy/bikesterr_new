@@ -1,6 +1,10 @@
-import 'package:bikesterr/appbar.dart';
+import 'package:bikesterr/presentation/components/appbar.dart';
 import 'package:bikesterr/presentation/screens/login.dart';
+import 'package:bikesterr/presentation/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../domain/controllers/auth_controller.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -11,11 +15,15 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-
+  var authCont = Get.put(AuthController());
+  var emailCont = TextEditingController();
+  var passwordCont = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppbar(),
+      appBar: MyAppbar(
+        showMenuIcon: false,
+      ),
       body: Form(
         key: _formKey,
         child: Stack(children: [
@@ -30,6 +38,8 @@ class _RegisterState extends State<Register> {
           Align(
             alignment: Alignment.center,
             child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.all(10),
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
@@ -37,247 +47,134 @@ class _RegisterState extends State<Register> {
                 border: Border.all(width: 2),
                 borderRadius: const BorderRadius.all(Radius.circular(35)),
               ),
-              child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "username",
-                          style: TextStyle(
-                            fontSize: 12,
+              child: SingleChildScrollView(
+                child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomTextField(
+                        label: "username",
+                        fun: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter valid username';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        myController: emailCont,
+                        label: "email",
+                        fun: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              !value.contains("@") ||
+                              !value.contains(".com")) {
+                            return 'Please enter valid email';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        label: "Date of Birth",
+                        fun: (value) {
+                          if (value == null || value.length < 8) {
+                            return 'incorrect password';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        label: "Contact number",
+                        fun: (value) {
+                          if (value == null ||
+                              value.length < 11 ||
+                              value.length > 11) {
+                            return 'incorrect number';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        label: "Emergency number",
+                        fun: (value) {
+                          if (value == null ||
+                              value.length < 11 ||
+                              value.length > 11) {
+                            return 'incorrect number';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        label: "Blood type",
+                        fun: (value) {
+                          if (value == null || value.length > 3) {
+                            return 'please enter correct blood type';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        myController: passwordCont,
+                        label: "password",
+                        isPassword: true,
+                        fun: (value) {
+                          if (value == null || value.length < 8) {
+                            return 'incorrect password';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        label: "re-password",
+                        isPassword: true,
+                        fun: (value) {
+                          if (value == null || value.length < 8) {
+                            return 'incorrect password';
+                          }
+                          return null;
+                        },
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            authCont.signUp(emailCont.text, passwordCont.text);
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromRGBO(4, 42, 80, .9)),
+                          elevation: MaterialStateProperty.all(5),
+                        ),
+                        child: const Text(
+                          'Sign Up',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "you have an account?",
                           ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter valid username';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "email",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains("@") ||
-                            !value.contains(".com")) {
-                          return 'Please enter valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "date of birth",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.length < 8) {
-                          return 'incorrect password';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "contact number",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null ||
-                            value.length < 11 ||
-                            value.length > 11) {
-                          return 'incorrect number';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "emergency number",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null ||
-                            value.length < 11 ||
-                            value.length > 11) {
-                          return 'incorrect number';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "Blood type",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.length > 3) {
-                          return 'please enter correct blood type';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "password",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.length < 8) {
-                          return 'incorrect password';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        label: Text(
-                          "re-password",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.length < 8) {
-                          return 'incorrect password';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromRGBO(4, 42, 80, .9)),
-                        elevation: MaterialStateProperty.all(5),
-                      ),
-                      child: const Text(
-                        'Submit',
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "you have an account?",
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Login()),
-                              );
-                            },
-                            child: const Text(
-                              "Log in",
-                            ))
-                      ],
-                    )
-                  ]),
+                          TextButton(
+                              onPressed: () {
+                                Get.to(() => Login());
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => const Login()),
+                                // );
+                              },
+                              child: const Text(
+                                "Log in",
+                              ))
+                        ],
+                      )
+                    ]),
+              ),
             ),
           ),
         ]),
