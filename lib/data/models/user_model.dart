@@ -2,16 +2,16 @@ class UserModel {
   String userName;
   String email;
   DateTime dateOfBirth;
-  String contactNumber;
+  String phoneNumber;
   String emergencyNumber;
-  String bloodType;
+  String bloodGroup;
 
   UserModel({
     required this.userName,
     required this.email,
     required this.dateOfBirth,
-    required this.contactNumber,
+    required this.phoneNumber,
     required this.emergencyNumber,
-    required this.bloodType,
+    required this.bloodGroup,
   });
 }

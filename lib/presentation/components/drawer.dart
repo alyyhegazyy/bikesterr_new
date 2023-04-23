@@ -1,3 +1,4 @@
+import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:bikesterr/presentation/screens/home_screens/profile.dart';
 import 'package:bikesterr/presentation/screens/wallet.dart';
 import 'package:bikesterr/presentation/screens/welcome_screen.dart';
@@ -58,7 +59,10 @@ class MyDrawer extends StatelessWidget {
             title: const Text("Nearest station"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              //Navigator.pushNamed(context, '/pageview');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
             },
           ),
           ListTile(

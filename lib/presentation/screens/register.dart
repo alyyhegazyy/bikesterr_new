@@ -18,6 +18,11 @@ class _RegisterState extends State<Register> {
   var authCont = Get.put(AuthController());
   var emailCont = TextEditingController();
   var passwordCont = TextEditingController();
+  var userNameCont = TextEditingController();
+  var dateofBirthCont = TextEditingController();
+  var phoneNumberCont = TextEditingController();
+  var emergencyNumberCont = TextEditingController();
+  var bloodGroupCont = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +143,22 @@ class _RegisterState extends State<Register> {
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            authCont.signUp(emailCont.text, passwordCont.text);
+                            authCont.signUp(
+                              email: emailCont.text,
+                              password: passwordCont.text,
+                            )
+                              ..then((uid) {
+                                authCont.addUser(
+                                    userName: userNameCont.text,
+                                    dateOfBirth: dateofBirthCont.text,
+                                    phoneNumber: phoneNumberCont.text,
+                                    emergencyNumber: emergencyNumberCont.text,
+                                    bloodGroup: bloodGroupCont.text,
+                                    email: emailCont.text,
+                                    userID: uid);
+                                Get.to(() => Login());
+                              })
+                              ..onError((error, stackTrace) {});
                           }
                         },
                         style: ButtonStyle(

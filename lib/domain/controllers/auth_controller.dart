@@ -1,4 +1,5 @@
 import 'package:bikesterr/presentation/screens/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,8 +11,9 @@ class AuthController extends RxController {
   // final FirebaseAuthentication _firebaseAuthentication =
   //     FirebaseAuthentication();
   final auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   // functirons
-  login(String email, String password) async {
+  login({required String email, required String password}) async {
     var userCred =
         await auth.signInWithEmailAndPassword(email: email, password: password);
 
@@ -33,7 +35,10 @@ class AuthController extends RxController {
     }
   }
 
-  signUp(String email, String password) async {
+  Future signUp({
+    required String email,
+    required String password,
+  }) async {
     var userCred = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
@@ -44,7 +49,7 @@ class AuthController extends RxController {
         backgroundColor: Colors.green,
         duration: Duration(seconds: 3),
       ));
-      Get.to(() => Login());
+      return userCred.user!.uid;
     } else {
       Get.showSnackbar(const GetSnackBar(
         title: 'error',
@@ -52,6 +57,26 @@ class AuthController extends RxController {
         backgroundColor: Colors.red,
         duration: Duration(seconds: 3),
       ));
+      throw Exception();
     }
+  }
+
+  addUser({
+    required String userName,
+    required String dateOfBirth,
+    required String phoneNumber,
+    String emergencyNumber = "NA",
+    required String bloodGroup,
+    required String userID,
+    required String email,
+  }) async {
+    await _firestore.collection("users").doc(userID).set({
+      "bloodGroup": bloodGroup,
+      "dateofBirth": dateOfBirth,
+      "emergencyNumber": emergencyNumber,
+      "phoneNumber": phoneNumber,
+      "userName": userName,
+      "email": email,
+    });
   }
 }

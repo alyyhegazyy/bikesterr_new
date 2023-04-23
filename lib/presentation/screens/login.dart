@@ -120,7 +120,9 @@ class _LoginState extends State<Login> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          authCont.login(emailCont.text, passwordCont.text);
+                          authCont.login(
+                              email: emailCont.text,
+                              password: passwordCont.text);
                         }
                       },
                       style: ButtonStyle(

@@ -1,3 +1,5 @@
+import 'package:bikesterr/presentation/components/appbar.dart';
+import 'package:bikesterr/presentation/components/drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'home_screens/all_stations.dart';
@@ -17,6 +19,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppbar(),
+      drawer: const MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         items: const [
