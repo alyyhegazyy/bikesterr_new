@@ -10,18 +10,32 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
-        showMenuIcon: false,
-      ),
+      // appBar: MyAppbar(
+      //   showMenuIcon: false,
+      // ),
       body: Form(
         child: Stack(children: [
           Container(
             // width: double.infinity,
             // height: double.infinity,
-            child: Image.asset('lib/assets/roadBike.avif',
+            child: Image.asset('assets/bikeMount.jpg',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill),
+          ),
+          Container(
+            margin: EdgeInsets.all(30),
+            alignment: Alignment.topCenter,
+            child: const Text(
+              'Bikester',
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                letterSpacing: 1.5,
+                color: Colors.black,
+              ),
+            ),
           ),
           Container(
             alignment: Alignment.center,

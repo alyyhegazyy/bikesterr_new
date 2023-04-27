@@ -28,16 +28,16 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            title: const Text("Profile"),
-            leading: const Icon(Icons.arrow_circle_right),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Profile()),
-              );
-            },
-          ),
+          // ListTile(
+          //   title: const Text("Profile"),
+          //   leading: const Icon(Icons.arrow_circle_right),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => const Profile()),
+          //     );
+          //   },
+          // ),
           ListTile(
             title: const Text("Wallet"),
             leading: const Icon(Icons.arrow_circle_right),

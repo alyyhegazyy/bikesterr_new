@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
           Container(
             // width: double.infinity,
             // height: double.infinity,
-            child: Image.asset('lib/assets/bikeSharing.avif',
+            child: Image.asset('assets/bikeSharing.jpg',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill),
@@ -58,6 +58,7 @@ class _RegisterState extends State<Register> {
                     // crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomTextField(
+                        myController: userNameCont,
                         label: "username",
                         fun: (value) {
                           if (value == null || value.isEmpty) {
@@ -80,6 +81,7 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       CustomTextField(
+                        myController: dateofBirthCont,
                         label: "Date of Birth",
                         fun: (value) {
                           if (value == null || value.length < 8) {
@@ -89,6 +91,7 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       CustomTextField(
+                        myController: phoneNumberCont,
                         label: "Contact number",
                         fun: (value) {
                           if (value == null ||
@@ -100,6 +103,7 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       CustomTextField(
+                        myController: emergencyNumberCont,
                         label: "Emergency number",
                         fun: (value) {
                           if (value == null ||
@@ -111,6 +115,7 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                       CustomTextField(
+                        myController: bloodGroupCont,
                         label: "Blood type",
                         fun: (value) {
                           if (value == null || value.length > 3) {

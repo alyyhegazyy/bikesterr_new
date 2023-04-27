@@ -50,26 +50,3 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
-/*
-      if (widget.label==password||widget.label==re-password){
-        widget.ispassword==true
-      };
-      if (widget.ispassword=true){
-        obscureText : true;
-        suffixIcon: IconButton(
-                      icon: Icon(passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      onPressed: () {
-                        setState(
-                          () {
-                            passwordVisible = !passwordVisible;
-                          },
-                        );
-                      },
-                    ),
-                    alignLabelWithHint: false,
-                    filled: true,
-                  ),
-      };
-*/

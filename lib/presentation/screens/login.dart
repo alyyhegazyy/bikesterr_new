@@ -49,116 +49,118 @@ class _LoginState extends State<Login> {
                 border: Border.all(width: 2),
                 borderRadius: BorderRadius.all(Radius.circular(35)),
               ),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomTextField(
-                      myController: emailCont,
-                      label: "email",
-                      fun: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains("@") ||
-                            !value.contains(".com")) {
-                          return 'Please enter valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    CustomTextField(
-                      myController: passwordCont,
-                      label: "password",
-                      isPassword: true,
-                      fun: (value) {
-                        if (value == null || value.length < 8) {
-                          return 'incorrect password';
-                        }
-                        return null;
-                      },
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: CheckboxListTile(
-                            value: check2,
-                            controlAffinity: ListTileControlAffinity
-                                .leading, //checkbox at left
-                            onChanged: (bool? value) {
-                              setState(() {
-                                check2 = value;
-                              });
-                            },
-                            title: const Text(
-                              "Remember me",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CustomTextField(
+                        myController: emailCont,
+                        label: "email",
+                        fun: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              !value.contains("@") ||
+                              !value.contains(".com")) {
+                            return 'Please enter valid email';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextField(
+                        myController: passwordCont,
+                        label: "password",
+                        isPassword: true,
+                        fun: (value) {
+                          if (value == null || value.length < 8) {
+                            return 'incorrect password';
+                          }
+                          return null;
+                        },
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: CheckboxListTile(
+                              value: check2,
+                              controlAffinity: ListTileControlAffinity
+                                  .leading, //checkbox at left
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  check2 = value;
+                                });
+                              },
+                              title: const Text(
+                                "Remember me",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Forgot Password?",
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                  color: Colors.green,
-                                  fontSize: 10,
-                                ),
-                              )),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          authCont.login(
-                              email: emailCont.text,
-                              password: passwordCont.text);
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromRGBO(4, 42, 80, .9)),
-                        elevation: MaterialStateProperty.all(5),
+                          Expanded(
+                            flex: 2,
+                            child: TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  "Forgot Password?",
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 10,
+                                  ),
+                                )),
+                          )
+                        ],
                       ),
-                      child: const Text(
-                        'Log In',
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Don't have an account?",
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            authCont.login(
+                                email: emailCont.text,
+                                password: passwordCont.text);
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Color.fromRGBO(4, 42, 80, .9)),
+                          elevation: MaterialStateProperty.all(5),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Get.to(() => Register());
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const Register()),
-                            // );
-                          },
-                          child: const Text(
-                            "Sign up",
+                        child: const Text(
+                          'Log In',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Don't have an account?",
                           ),
-                        ),
-                      ],
-                    )
-                  ]),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => Register());
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const Register()),
+                              // );
+                            },
+                            child: const Text(
+                              "Sign up",
+                            ),
+                          ),
+                        ],
+                      )
+                    ]),
+              ),
             ),
           ),
         ]),

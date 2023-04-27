@@ -1,3 +1,4 @@
+import 'package:bikesterr/domain/controllers/user_data_controller.dart';
 import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class AuthController extends RxController {
   login({required String email, required String password}) async {
     var userCred =
         await auth.signInWithEmailAndPassword(email: email, password: password);
-
+    var userDataController = Get.put(UserDataController());
     if (userCred != null) {
       Get.showSnackbar(const GetSnackBar(
         title: 'successful',
@@ -24,6 +25,8 @@ class AuthController extends RxController {
         backgroundColor: Colors.green,
         duration: Duration(seconds: 3),
       ));
+      userDataController.userID = userCred.user!.uid;
+      userDataController.fetchData();
       Get.to(() => HomePage());
     } else {
       Get.showSnackbar(const GetSnackBar(
