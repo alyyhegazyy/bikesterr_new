@@ -13,6 +13,11 @@ class AuthController extends RxController {
   //     FirebaseAuthentication();
   final auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+//   final _recaptchaVerifier = RecaptchaVerifier(
+//   container: 'recaptcha',
+//   size: RecaptchaVerifierSize.compact,
+//   theme: RecaptchaVerifierTheme.light, auth: auth,
+// );
   // functirons
   login({required String email, required String password}) async {
     var userCred =

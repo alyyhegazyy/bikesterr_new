@@ -2,7 +2,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 
-class UserInfoField extends StatefulWidget {
+class UserInfoField extends StatelessWidget {
   UserInfoField({
     super.key,
     this.label = " ",
@@ -13,15 +13,10 @@ class UserInfoField extends StatefulWidget {
   String? info;
 
   @override
-  State<UserInfoField> createState() => _UserInfoFieldState();
-}
-
-class _UserInfoFieldState extends State<UserInfoField> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(209, 199, 202, 50),
+        color: Color.fromARGB(255, 247, 238, 241),
         border: Border.all(
             width: 1, color: const Color.fromRGBO(209, 199, 202, 50)),
         borderRadius: const BorderRadius.all(Radius.circular(35)),
@@ -33,7 +28,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
       child: Row(
         children: [
           Text(
-            widget.label!,
+            label!,
             style: const TextStyle(
               fontSize: 14,
             ),
@@ -42,7 +37,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
             width: 5,
           ),
           Text(
-            widget.info!,
+            info!,
             style: const TextStyle(
               fontSize: 14,
             ),

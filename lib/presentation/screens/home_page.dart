@@ -1,3 +1,4 @@
+import 'package:bikesterr/domain/controllers/stations_controller.dart';
 import 'package:bikesterr/presentation/components/appbar.dart';
 import 'package:bikesterr/presentation/components/drawer.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'home_screens/all_stations.dart';
 import 'home_screens/nearest_stations.dart';
 import 'home_screens/profile.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +18,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var screens = [NearestStation(), AllStations(), Profile()];
   int index = 0;
+
+  var stationController = Get.put(StationsController());
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    stationController.getStations();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

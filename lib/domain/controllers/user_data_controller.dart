@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../presentation/screens/login.dart';
 
 class UserDataController extends GetxController {
-  var userData;
+  var userData = {}.obs;
   late String userID;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool dataIsReady = false;
@@ -22,12 +22,12 @@ class UserDataController extends GetxController {
     DocumentSnapshot snapshot = await docRef.get();
 
 // Extract the data from the snapshot
-    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    userData.value = snapshot.data() as Map<String, dynamic>;
     //as Map<String, dynamic>;
     if (userData != null) {
       dataIsReady = true;
       log("user data restored successfully");
-      log(data.toString());
+      log(userData.toString());
     }
   }
 }

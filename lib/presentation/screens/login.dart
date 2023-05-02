@@ -1,6 +1,7 @@
 import 'package:bikesterr/domain/controllers/auth_controller.dart';
 import 'package:bikesterr/presentation/components/appbar.dart';
 import 'package:bikesterr/presentation/components/custom_text_field.dart';
+import 'package:bikesterr/presentation/components/my_textfield.dart';
 import 'package:bikesterr/presentation/screens/home_screens/profile.dart';
 import 'package:bikesterr/presentation/screens/register.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,17 @@ class _LoginState extends State<Login> {
                           return null;
                         },
                       ),
+                      // MyTextField(
+                      //   controller: passwordCont,
+                      //   fun: (value) {
+                      //     if (value == null || value.length < 8) {
+                      //       return 'incorrect password';
+                      //     }
+                      //     return null;
+                      //   },
+                      //   hintText: 'password',
+                      //   obscureText: true,
+                      // ),
                       CustomTextField(
                         myController: passwordCont,
                         label: "password",
