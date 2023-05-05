@@ -1,11 +1,26 @@
 import 'package:bikesterr/presentation/components/appbar.dart';
+import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:bikesterr/presentation/screens/login.dart';
 import 'package:bikesterr/presentation/screens/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  void initState() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      Get.to(HomePage());
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -17,6 +17,6 @@ class StationModel {
     address = stationMap["address"];
     lat = stationMap["lat"];
     long = stationMap["long"];
-    availableBikes = stationMap["availableBikes"];
+    availableBikes = stationMap["availableBikes"].toString();
   }
 }

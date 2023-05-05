@@ -1,8 +1,11 @@
 import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:bikesterr/presentation/screens/home_screens/profile.dart';
+import 'package:bikesterr/presentation/screens/login.dart';
 import 'package:bikesterr/presentation/screens/wallet.dart';
 import 'package:bikesterr/presentation/screens/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../screens/help.dart';
 
@@ -42,10 +45,7 @@ class MyDrawer extends StatelessWidget {
             title: const Text("Wallet"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Wallet()),
-              );
+              Get.offAll(Wallet());
             },
           ),
           ListTile(
@@ -79,10 +79,8 @@ class MyDrawer extends StatelessWidget {
             title: const Text("Log out"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-              );
+              FirebaseAuth.instance.signOut();
+              Get.offAll(Login());
             },
           ),
         ],

@@ -26,7 +26,7 @@ class StationsController extends GetxController {
 
     for (var documentSnapshot in stationsList) {
       // Access each document here
-      var map = documentSnapshot.data() as Map;
+      var map = documentSnapshot.data() as Map<String, dynamic>;
       var stationModel = StationModel.fromJson(map);
       allStations.value.add(stationModel);
     }
