@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 class AllStations extends StatelessWidget {
   AllStations({super.key});
 
-  StationModel station = StationModel(
-      address: "maaadi",
-      lat: "30.12456",
-      long: "29.31254",
-      availableBikes: "6");
+  // StationModel station = StationModel(
+  //     address: "maaadi",
+  //     lat: "30.12456",
+  //     long: "29.31254",
+  //     availableBikes: "6");
 
   var stationController = Get.put(StationsController());
 

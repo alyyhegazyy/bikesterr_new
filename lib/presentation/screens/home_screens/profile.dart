@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../domain/controllers/user_data_controller.dart';
 
@@ -13,7 +14,7 @@ class Profile extends StatelessWidget {
 
   //var userDataModel;
   var userDataController = Get.put(UserDataController());
-
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -62,27 +63,23 @@ class Profile extends StatelessWidget {
                   children: [
                     UserInfoField(
                       label: "Email:",
-                      info: " ${userDataController.userData.value["email"]} ",
+                      info: " ${box.read('username')} ",
                     ),
                     UserInfoField(
                       label: "Date of Birth:",
-                      info:
-                          " ${userDataController.userData.value["dateofBirth"]} ",
+                      info: " ${box.read('dateOfBirth')} ",
                     ),
                     UserInfoField(
                       label: "Phone Number:",
-                      info:
-                          " ${userDataController.userData.value["phoneNumber"]} ",
+                      info: " ${box.read('phoneNumber')} ",
                     ),
                     UserInfoField(
                       label: "Emergency Number:",
-                      info:
-                          " ${userDataController.userData.value["emergencyNumber"]} ",
+                      info: " ${box.read('emergencyNumber')} ",
                     ),
                     UserInfoField(
                       label: "Blood Group:",
-                      info:
-                          " ${userDataController.userData.value["bloodGroup"]} ",
+                      info: " ${box.read('bloodGroup')} ",
                     ),
                     const SizedBox(
                       height: 5,

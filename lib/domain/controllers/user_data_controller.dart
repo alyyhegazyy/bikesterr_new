@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:get_storage/get_storage.dart';
 import '../../presentation/screens/login.dart';
 
 class UserDataController extends GetxController {
@@ -13,7 +13,7 @@ class UserDataController extends GetxController {
   late String userID;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool dataIsReady = false;
-
+  final box = GetStorage();
   fetchData() async {
     log("fetch user data started");
     DocumentReference docRef =
@@ -28,6 +28,12 @@ class UserDataController extends GetxController {
       dataIsReady = true;
       log("user data restored successfully");
       log(userData.toString());
+      box.write('username', userData.value["userName"]);
+      box.write('email', userData.value["email"]);
+      box.write('dateOfBirth', userData.value["dateofBirth"]);
+      box.write('phoneNumber', userData.value["phoneNumber"]);
+      box.write('emergencyNumber', userData.value["emergencyNumber"]);
+      box.write('bloodGroup', userData.value["bloodGroup"]);
     }
   }
 }

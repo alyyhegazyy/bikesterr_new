@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppbar(),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         items: const [

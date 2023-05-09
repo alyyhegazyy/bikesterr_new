@@ -29,7 +29,7 @@ class _ReviewState extends State<Review> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: MyAppbar(),
-        drawer: const MyDrawer(),
+        drawer: MyDrawer(),
         body: Container(
           width: 360,
           height: 740,

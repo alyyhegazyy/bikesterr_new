@@ -69,6 +69,10 @@ class AuthController extends RxController {
     }
   }
 
+  logOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   addUser({
     required String userName,
     required String dateOfBirth,

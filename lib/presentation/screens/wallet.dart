@@ -12,7 +12,7 @@ class Wallet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppbar(),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: Container(
         color: const Color.fromRGBO(233, 233, 235, 1),
         child: Column(

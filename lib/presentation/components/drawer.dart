@@ -1,3 +1,4 @@
+import 'package:bikesterr/domain/controllers/auth_controller.dart';
 import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:bikesterr/presentation/screens/home_screens/profile.dart';
 import 'package:bikesterr/presentation/screens/login.dart';
@@ -10,8 +11,8 @@ import 'package:get/get.dart';
 import '../screens/help.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
-
+  MyDrawer({super.key});
+  var authCont = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,7 +46,7 @@ class MyDrawer extends StatelessWidget {
             title: const Text("Wallet"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              Get.offAll(Wallet());
+              Get.offAll(() => Wallet());
             },
           ),
           ListTile(
@@ -59,28 +60,23 @@ class MyDrawer extends StatelessWidget {
             title: const Text("Nearest station"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
-              );
+              Get.offAll(() => HomePage());
             },
           ),
           ListTile(
             title: const Text("Help"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Help()),
-              );
+              Get.offAll(() => Help());
             },
           ),
           ListTile(
             title: const Text("Log out"),
             leading: const Icon(Icons.arrow_circle_right),
             onTap: () {
-              FirebaseAuth.instance.signOut();
-              Get.offAll(Login());
+              authCont.logOut();
+              //FirebaseAuth.instance.signOut();
+              Get.offAll(() => Login());
             },
           ),
         ],

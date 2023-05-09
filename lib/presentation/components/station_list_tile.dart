@@ -1,7 +1,9 @@
 import 'package:bikesterr/data/models/station_model.dart';
+import 'package:bikesterr/presentation/screens/home_page.dart';
 import 'package:bikesterr/presentation/screens/picked_station.dart';
 import 'package:bikesterr/presentation/screens/wallet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StationListTile extends StatelessWidget {
   final StationModel stationModel;
@@ -24,7 +26,7 @@ class StationListTile extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.ev_station, color: Colors.black),
                 title: Text(
-                  " ${stationModel.address}",
+                  " ${stationModel.stationName}",
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -37,11 +39,7 @@ class StationListTile extends StatelessWidget {
                   size: 40,
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PickedStation()),
-                  );
+                  Get.to(() => PickedStation());
                 },
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 5, vertical: 2.5),
